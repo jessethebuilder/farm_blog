@@ -26,4 +26,7 @@ class Post
   def publication_date
     updated_at.strftime('%B, %e %Y')
   end
+
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
 end
