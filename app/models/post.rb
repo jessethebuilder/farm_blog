@@ -13,7 +13,7 @@ class Post
   field :published, type: Mongoid::Boolean, default: false
 
   field :image, type: String
-  mount_uploader :image, FarmBlogImageUploader
+  mount_uploader :image, FarmBlogImageUploader, dependent: :destroy
 
   belongs_to :post_category
 
