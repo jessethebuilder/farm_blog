@@ -18,6 +18,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.1.3"
   s.add_dependency "mongoid", "~> 6.2.0"
+  s.add_dependency "mongoid-slug"
+  s.add_dependency 'kaminari-mongoid'
+  s.add_dependency 'kaminari-actionview'
 
-  # s.add_development_dependency "sqlite3"
+  s.add_dependency 'mini_magick'
+  s.add_dependency 'fog'
+  s.add_dependency 'carrierwave-mongoid'
+  s.add_dependency 'wysiwyg-rails'
 end

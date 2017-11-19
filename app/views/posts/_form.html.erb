@@ -1,0 +1,73 @@
+<style>
+  .fr-view{
+    height: 400px;
+  }
+</style>
+
+<%= form_for @post do |f| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= error_explanation @post %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+
+        <div class="form-group">
+          <%= f.label :title, class: 'control-label' %>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-group">
+          <small class="pull-right"><a href="toggle_select" name="toggle_select"></a></small>
+          <%= f.label :post_category, 'Category', class: 'control-label' %>
+          <%= f.select :post_category, for_select(PostCategory.all, :name, :id,
+                       selected_items: @post.post_category.to_param), {include_blank: true}, class: 'form-control' %>
+          <%= f.text_field :new_post_category, list: 'post_categories', class: 'form-control hidden' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="well">
+      <%= image_select f, :image %>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <%= f.label :content, class: 'control-label' %>
+          <%= f.text_area :content, class: 'form-control froala_editor' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.submit 'Publish', class: 'btn btn-primary' %>
+        <%= f.submit 'Draft', class: 'btn btn-default' %>
+        <% unless @post.new_record? %>
+          <%= link_to 'Delete', post_path(@post), method: :delete,
+                      class: 'btn btn-danger',
+                      data: {confirm: 'Are you sure? This is permanent!'} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $(document).on('turbolinks:load', function(){
+    var pcs = new PostCategorySelect;
+    pcs.init();
+  });
+</script>
+
+<script>
+  $('.froala_editor').froalaEditor();
+</script>
