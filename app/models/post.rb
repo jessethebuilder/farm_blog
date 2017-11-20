@@ -17,6 +17,8 @@ class Post
 
   field :keywords, type: String
 
+  field :summary, type: String
+
   belongs_to :post_category, optional: true
 
   attr_accessor :new_post_category
