@@ -49,6 +49,16 @@
 
     <div class="row">
       <div class="col-xs-12">
+        <div class="form-group">
+          <%= f.label :keywords, class: 'control-label' %>
+          <small>Seperate with commas (,) </small>
+          <%= f.text_field :keywords, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
         <%= f.submit 'Publish', class: 'btn btn-primary' %>
         <%= f.submit 'Draft', class: 'btn btn-default' %>
         <% unless @post.new_record? %>

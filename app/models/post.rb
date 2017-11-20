@@ -15,7 +15,9 @@ class Post
   field :image, type: String
   mount_uploader :image, FarmBlogImageUploader, dependent: :destroy
 
-  belongs_to :post_category
+  field :keywords, type: String
+
+  belongs_to :post_category, optional: true
 
   attr_accessor :new_post_category
 
