@@ -39,13 +39,13 @@ class Post
     $1
   end
 
-  before_save :update_summary
+  # before_save :update_summary
 
   private
-
-  def update_summary
-    if summary.blank? || summary != first_paragraph
-      self.summary = first_paragraph
-    end
-  end
+   
+  # def update_summary
+  #   if summary.blank? || summary != first_paragraph
+  #     self.summary = first_paragraph
+  #   end
+  # end
 end
