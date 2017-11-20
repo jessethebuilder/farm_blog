@@ -33,4 +33,19 @@ class Post
 
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
+
+  def first_paragraph
+    /<p>(.*?)<\/p>/ =~ content
+    $1
+  end
+
+  before_save :update_summary
+
+  private
+
+  def update_summary
+    if summary.blank? || summary != first_paragraph
+      self.summary = first_paragraph
+    end
+  end
 end
