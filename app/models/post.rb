@@ -28,7 +28,12 @@ class Post
   end
 
   def publication_date
-    updated_at.strftime('%B, %e %Y')
+    updated_at.in_time_zone("America/Los_Angeles").strftime('%B, %e %Y')
+  end
+
+  def publication_time
+    time = updated_at.in_time_zone("America/Los_Angeles").strftime('%l:%M %P %Z')
+    "#{publication_date} #{time}"
   end
 
   scope :published, -> { where(published: true) }
@@ -42,7 +47,7 @@ class Post
   # before_save :update_summary
 
   private
-   
+
   # def update_summary
   #   if summary.blank? || summary != first_paragraph
   #     self.summary = first_paragraph
